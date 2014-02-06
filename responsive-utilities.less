@@ -1,0 +1,93 @@
+//
+// Responsive: Utility classes
+// --------------------------------------------------
+
+
+// IE10 in Windows (Phone) 8
+//
+// Support for responsive views via media queries is kind of borked in IE10, for
+// Surface/desktop in split view and for Windows Phone 8. This particular fix
+// must be accompanied by a snippet of JavaScript to sniff the user agent and
+// apply some conditional CSS to *only* the Surface/desktop Windows 8. Look at
+// our Getting Started page for more information on this bug.
+//
+// For more information, see the following:
+//
+// Issue: https://github.com/twbs/bootstrap/issues/10497
+// Docs: http://getbootstrap.com/getting-started/#browsers
+// Source: http://timkadlec.com/2012/10/ie10-snap-mode-and-responsive-design/
+
+@-ms-viewport {
+  width: device-width;
+}
+
+
+// Visibility utilities
+.tb-visible-xs {
+  .tb-responsive-invisibility();
+
+  @media (max-width: @screen-xs-max) {
+    .tb-responsive-visibility();
+  }
+}
+.tb-visible-sm {
+  .tb-responsive-invisibility();
+
+  @media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
+    .tb-responsive-visibility();
+  }
+}
+.tb-visible-md {
+  .tb-responsive-invisibility();
+
+  @media (min-width: @screen-md-min) and (max-width: @screen-md-max) {
+    .tb-responsive-visibility();
+  }
+}
+.tb-visible-lg {
+  .tb-responsive-invisibility();
+
+  @media (min-width: @screen-lg-min) {
+    .tb-responsive-visibility();
+  }
+}
+
+.tb-hidden-xs {
+  @media (max-width: @screen-xs-max) {
+    .tb-responsive-invisibility();
+  }
+}
+.tb-hidden-sm {
+  @media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
+    .tb-responsive-invisibility();
+  }
+}
+.tb-hidden-md {
+  @media (min-width: @screen-md-min) and (max-width: @screen-md-max) {
+    .tb-responsive-invisibility();
+  }
+}
+.tb-hidden-lg {
+  @media (min-width: @screen-lg-min) {
+    .tb-responsive-invisibility();
+  }
+}
+
+
+// Print utilities
+//
+// Media queries are placed on the inside to be mixin-friendly.
+
+.tb-visible-print {
+  .tb-responsive-invisibility();
+
+  @media print {
+    .tb-responsive-visibility();
+  }
+}
+
+.tb-hidden-print {
+  @media print {
+    .tb-responsive-invisibility();
+  }
+}

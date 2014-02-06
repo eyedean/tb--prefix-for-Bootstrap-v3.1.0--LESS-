@@ -1,0 +1,247 @@
+
+//
+// Load core variables and mixins
+// --------------------------------------------------
+
+@import "variables.less";
+@import "mixins.less";
+
+
+
+//
+// Buttons
+// --------------------------------------------------
+
+// Common styles
+.tb-btn-default,
+.tb-btn-primary,
+.tb-btn-success,
+.tb-btn-info,
+.tb-btn-warning,
+.tb-btn-danger {
+  text-shadow: 0 -1px 0 rgba(0,0,0,.2);
+  @shadow: inset 0 1px 0 rgba(255,255,255,.15), 0 1px 1px rgba(0,0,0,.075);
+  .tb-box-shadow(@shadow);
+
+  // Reset the shadow
+  &:active,
+  &.tb-active {
+    .tb-box-shadow(inset 0 3px 5px rgba(0,0,0,.125));
+  }
+}
+
+// Mixin for generating new styles
+.tb-btn-styles(@btn-color: #555) {
+  #tb-gradient > .tb-vertical(@start-color: @btn-color; @end-color: darken(@btn-color, 12%));
+  .tb-reset-filter(); // Disable gradients for IE9 because filter bleeds through rounded corners
+  background-repeat: repeat-x;
+  border-color: darken(@btn-color, 14%);
+
+  &:hover,
+  &:focus  {
+    background-color: darken(@btn-color, 12%);
+    background-position: 0 -15px;
+  }
+
+  &:active,
+  &.tb-active {
+    background-color: darken(@btn-color, 12%);
+    border-color: darken(@btn-color, 14%);
+  }
+}
+
+// Common styles
+.tb-btn {
+  // Remove the gradient for the pressed/active state
+  &:active,
+  &.tb-active {
+    background-image: none;
+  }
+}
+
+// Apply the mixin to the buttons
+.tb-btn-default { .tb-btn-styles(@btn-default-bg); text-shadow: 0 1px 0 #fff; border-color: #ccc; }
+.tb-btn-primary { .tb-btn-styles(@btn-primary-bg); }
+.tb-btn-success { .tb-btn-styles(@btn-success-bg); }
+.tb-btn-info    { .tb-btn-styles(@btn-info-bg); }
+.tb-btn-warning { .tb-btn-styles(@btn-warning-bg); }
+.tb-btn-danger  { .tb-btn-styles(@btn-danger-bg); }
+
+
+
+//
+// Images
+// --------------------------------------------------
+
+.tb-thumbnail,
+.tb-img-thumbnail {
+  .tb-box-shadow(0 1px 2px rgba(0,0,0,.075));
+}
+
+
+
+//
+// Dropdowns
+// --------------------------------------------------
+
+.tb-dropdown-menu > li > a:hover,
+.tb-dropdown-menu > li > a:focus {
+  #tb-gradient > .tb-vertical(@start-color: @dropdown-link-hover-bg; @end-color: darken(@dropdown-link-hover-bg, 5%));
+  background-color: darken(@dropdown-link-hover-bg, 5%);
+}
+.tb-dropdown-menu > .tb-active > a,
+.tb-dropdown-menu > .tb-active > a:hover,
+.tb-dropdown-menu > .tb-active > a:focus {
+  #tb-gradient > .tb-vertical(@start-color: @dropdown-link-active-bg; @end-color: darken(@dropdown-link-active-bg, 5%));
+  background-color: darken(@dropdown-link-active-bg, 5%);
+}
+
+
+
+//
+// Navbar
+// --------------------------------------------------
+
+// Default navbar
+.tb-navbar-default {
+  #tb-gradient > .tb-vertical(@start-color: lighten(@navbar-default-bg, 10%); @end-color: @navbar-default-bg);
+  .tb-reset-filter(); // Remove gradient in IE<10 to fix bug where dropdowns don't get triggered
+  border-radius: @navbar-border-radius;
+  @shadow: inset 0 1px 0 rgba(255,255,255,.15), 0 1px 5px rgba(0,0,0,.075);
+  .tb-box-shadow(@shadow);
+
+  .tb-navbar-nav > .tb-active > a {
+    #tb-gradient > .tb-vertical(@start-color: darken(@navbar-default-bg, 5%); @end-color: darken(@navbar-default-bg, 2%));
+    .tb-box-shadow(inset 0 3px 9px rgba(0,0,0,.075));
+  }
+}
+.tb-navbar-brand,
+.tb-navbar-nav > li > a {
+  text-shadow: 0 1px 0 rgba(255,255,255,.25);
+}
+
+// Inverted navbar
+.tb-navbar-inverse {
+  #tb-gradient > .tb-vertical(@start-color: lighten(@navbar-inverse-bg, 10%); @end-color: @navbar-inverse-bg);
+  .tb-reset-filter(); // Remove gradient in IE<10 to fix bug where dropdowns don't get triggered
+
+  .tb-navbar-nav > .tb-active > a {
+    #tb-gradient > .tb-vertical(@start-color: @navbar-inverse-bg; @end-color: lighten(@navbar-inverse-bg, 2.5%));
+    .tb-box-shadow(inset 0 3px 9px rgba(0,0,0,.25));
+  }
+
+  .tb-navbar-brand,
+  .tb-navbar-nav > li > a {
+    text-shadow: 0 -1px 0 rgba(0,0,0,.25);
+  }
+}
+
+// Undo rounded corners in static and fixed navbars
+.tb-navbar-static-top,
+.tb-navbar-fixed-top,
+.tb-navbar-fixed-bottom {
+  border-radius: 0;
+}
+
+
+
+//
+// Alerts
+// --------------------------------------------------
+
+// Common styles
+.tb-alert {
+  text-shadow: 0 1px 0 rgba(255,255,255,.2);
+  @shadow: inset 0 1px 0 rgba(255,255,255,.25), 0 1px 2px rgba(0,0,0,.05);
+  .tb-box-shadow(@shadow);
+}
+
+// Mixin for generating new styles
+.tb-alert-styles(@color) {
+  #tb-gradient > .tb-vertical(@start-color: @color; @end-color: darken(@color, 7.5%));
+  border-color: darken(@color, 15%);
+}
+
+// Apply the mixin to the alerts
+.tb-alert-success    { .tb-alert-styles(@alert-success-bg); }
+.tb-alert-info       { .tb-alert-styles(@alert-info-bg); }
+.tb-alert-warning    { .tb-alert-styles(@alert-warning-bg); }
+.tb-alert-danger     { .tb-alert-styles(@alert-danger-bg); }
+
+
+
+//
+// Progress bars
+// --------------------------------------------------
+
+// Give the progress background some depth
+.tb-progress {
+  #tb-gradient > .tb-vertical(@start-color: darken(@progress-bg, 4%); @end-color: @progress-bg)
+}
+
+// Mixin for generating new styles
+.tb-progress-bar-styles(@color) {
+  #tb-gradient > .tb-vertical(@start-color: @color; @end-color: darken(@color, 10%));
+}
+
+// Apply the mixin to the progress bars
+.tb-progress-bar            { .tb-progress-bar-styles(@progress-bar-bg); }
+.tb-progress-bar-success    { .tb-progress-bar-styles(@progress-bar-success-bg); }
+.tb-progress-bar-info       { .tb-progress-bar-styles(@progress-bar-info-bg); }
+.tb-progress-bar-warning    { .tb-progress-bar-styles(@progress-bar-warning-bg); }
+.tb-progress-bar-danger     { .tb-progress-bar-styles(@progress-bar-danger-bg); }
+
+
+
+//
+// List groups
+// --------------------------------------------------
+
+.tb-list-group {
+  border-radius: @border-radius-base;
+  .box-shadow(0 1px 2px rgba(0,0,0,.075));
+}
+.tb-list-group-item.tb-active,
+.tb-list-group-item.tb-active:hover,
+.tb-list-group-item.tb-active:focus {
+  text-shadow: 0 -1px 0 darken(@list-group-active-bg, 10%);
+  #tb-gradient > .tb-vertical(@start-color: @list-group-active-bg; @end-color: darken(@list-group-active-bg, 7.5%));
+  border-color: darken(@list-group-active-border, 7.5%);
+}
+
+
+
+//
+// Panels
+// --------------------------------------------------
+
+// Common styles
+.tb-panel {
+  .tb-box-shadow(0 1px 2px rgba(0,0,0,.05));
+}
+
+// Mixin for generating new styles
+.tb-panel-heading-styles(@color) {
+  #tb-gradient > .tb-vertical(@start-color: @color; @end-color: darken(@color, 5%));
+}
+
+// Apply the mixin to the panel headings only
+.tb-panel-default > .tb-panel-heading   { .tb-panel-heading-styles(@panel-default-heading-bg); }
+.tb-panel-primary > .tb-panel-heading   { .tb-panel-heading-styles(@panel-primary-heading-bg); }
+.tb-panel-success > .tb-panel-heading   { .tb-panel-heading-styles(@panel-success-heading-bg); }
+.tb-panel-info > .tb-panel-heading      { .tb-panel-heading-styles(@panel-info-heading-bg); }
+.tb-panel-warning > .tb-panel-heading   { .tb-panel-heading-styles(@panel-warning-heading-bg); }
+.tb-panel-danger > .tb-panel-heading    { .tb-panel-heading-styles(@panel-danger-heading-bg); }
+
+
+
+//
+// Wells
+// --------------------------------------------------
+
+.tb-well {
+  #tb-gradient > .tb-vertical(@start-color: darken(@well-bg, 5%); @end-color: @well-bg);
+  border-color: darken(@well-bg, 10%);
+  @shadow: inset 0 1px 3px rgba(0,0,0,.05), 0 1px 0 rgba(255,255,255,.1);
+  .tb-box-shadow(@shadow);
+}

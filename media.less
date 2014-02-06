@@ -1,0 +1,56 @@
+// Media objects
+// Source: http://stubbornella.org/content/?p=497
+// --------------------------------------------------
+
+
+// Common styles
+// -------------------------
+
+// Clear the floats
+.tb-media,
+.tb-media-body {
+  overflow: hidden;
+  zoom: 1;
+}
+
+// Proper spacing between instances of .media
+.tb-media,
+.tb-media .tb-media {
+  margin-top: 15px;
+}
+.tb-media:first-child {
+  margin-top: 0;
+}
+
+// For images and videos, set to block
+.tb-media-object {
+  display: block;
+}
+
+// Reset margins on headings for tighter default spacing
+.tb-media-heading {
+  margin: 0 0 5px;
+}
+
+
+// Media image alignment
+// -------------------------
+
+.tb-media {
+  > .tb-pull-left {
+    margin-right: 10px;
+  }
+  > .tb-pull-right {
+    margin-left: 10px;
+  }
+}
+
+
+// Media list variation
+// -------------------------
+
+// Undo default ul/ol styles
+.tb-media-list {
+  padding-left: 0;
+  list-style: none;
+}
